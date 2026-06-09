@@ -129,9 +129,9 @@
 .backdrop {
   position: fixed;
   inset: 0;
-  /* Scrim scuro coprente: elegante con il blur e ancora ben leggibile
-     SENZA blur (es. iOS in Risparmio Energetico, che lo disattiva). */
-  background: rgba(18, 12, 12, 0.68);
+  /* Velo scuro: con blur dà l'effetto vetro smerigliato, e resta comunque
+     leggibile senza blur (es. iOS in Risparmio Energetico). */
+  background: rgba(18, 12, 12, 0.55);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   opacity: 0;

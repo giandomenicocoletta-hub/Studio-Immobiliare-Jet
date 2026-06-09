@@ -39,6 +39,7 @@ export default function Navbar() {
   const solid = scrolled || !transparentTop
 
   return (
+    <>
     <header
       className={`${styles.nav} ${solid ? styles.scrolled : ''} ${
         transparentTop && !scrolled ? styles.overHero : ''
@@ -86,8 +87,11 @@ export default function Navbar() {
           <IconMenu width={26} height={26} />
         </button>
       </div>
+    </header>
 
-      {/* Drawer mobile */}
+      {/* Drawer mobile — montato FUORI dall'header: la navbar "scrolled" usa
+          backdrop-filter, che crea un containing-block e confinerebbe il
+          backdrop (position:fixed) alla sola navbar invece dell'intera finestra. */}
       <div
         className={`${styles.backdrop} ${open ? styles.backdropOpen : ''}`}
         onClick={() => setOpen(false)}
@@ -126,6 +130,6 @@ export default function Navbar() {
           Chiama: {AGENZIA.telefono}
         </a>
       </aside>
-    </header>
+    </>
   )
 }
