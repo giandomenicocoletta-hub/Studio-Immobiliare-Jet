@@ -129,7 +129,9 @@
 .backdrop {
   position: fixed;
   inset: 0;
-  background: rgba(20, 14, 14, 0.5);
+  /* Scrim scuro coprente: elegante con il blur e ancora ben leggibile
+     SENZA blur (es. iOS in Risparmio Energetico, che lo disattiva). */
+  background: rgba(18, 12, 12, 0.68);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   opacity: 0;

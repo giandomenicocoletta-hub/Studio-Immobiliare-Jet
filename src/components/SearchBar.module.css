@@ -319,7 +319,7 @@
     display: block;
     position: fixed;
     inset: 0;
-    background: rgba(20, 14, 14, 0.5);
+    background: rgba(18, 12, 12, 0.68);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
     opacity: 0;
