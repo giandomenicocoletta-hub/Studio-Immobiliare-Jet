@@ -129,8 +129,9 @@
 .backdrop {
   position: fixed;
   inset: 0;
-  background: rgba(30, 30, 30, 0.5);
-  backdrop-filter: blur(2px);
+  background: rgba(20, 14, 14, 0.5);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   opacity: 0;
   pointer-events: none;
   transition: opacity var(--t-base) ease;

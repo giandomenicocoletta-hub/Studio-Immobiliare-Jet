@@ -47,6 +47,7 @@
   padding: 5px 10px;
   border-radius: var(--radius-pill);
   backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
 }
 .badgeNew {
   background: var(--color-gold);
@@ -68,6 +69,7 @@
   color: #fff;
   background: rgba(30, 30, 30, 0.55);
   backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
   padding: 4px 10px;
   border-radius: var(--radius-pill);
 }
