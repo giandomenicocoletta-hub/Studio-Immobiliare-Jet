@@ -1,0 +1,574 @@
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero {
+  position: relative;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-image: url('/assets/viterbo-hero.jpg');
+  background-size: cover;
+  background-position: center;
+  isolation: isolate;
+  padding-top: var(--nav-height);
+}
+.heroOverlay {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(
+      105deg,
+      rgba(20, 10, 10, 0.78) 0%,
+      rgba(30, 14, 14, 0.5) 50%,
+      rgba(30, 14, 14, 0.35) 100%
+    ),
+    linear-gradient(to top, rgba(15, 8, 8, 0.7), transparent 40%);
+}
+
+.heroInner {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-block: var(--space-8);
+  color: #fff;
+}
+
+.kicker {
+  font-family: var(--font-serif);
+  font-size: clamp(1.1rem, 2vw, 1.5rem);
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+  margin-bottom: var(--space-4);
+}
+
+.heroTitle {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1em;
+  color: #fff;
+  font-size: var(--fs-hero);
+  font-weight: 600;
+  line-height: 1.04;
+  max-width: 16ch;
+}
+.line {
+  display: block;
+}
+.italic {
+  font-style: italic;
+  font-weight: 500;
+  color: #fff;
+}
+
+.heroCtas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  margin-top: var(--space-7);
+}
+
+.heroTrust {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3) var(--space-6);
+  margin-top: var(--space-6);
+}
+.heroTrust li {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: var(--fs-sm);
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.85);
+}
+.heroTrust svg {
+  color: var(--color-gold);
+}
+
+.searchWrap {
+  position: relative;
+  padding-bottom: var(--space-8);
+}
+
+/* ---- Stagger hero ---- */
+.s1,
+.s2,
+.s3,
+.s4,
+.s5 {
+  opacity: 0;
+  transform: translateY(30px);
+  animation: heroIn 0.9s var(--ease-luxe) forwards;
+}
+.s1 {
+  animation-delay: 0.1s;
+}
+.s2 {
+  animation-delay: 0.3s;
+}
+.s3 {
+  animation-delay: 0.5s;
+}
+.s4 {
+  animation-delay: 0.7s;
+}
+.s5 {
+  animation-delay: 0.9s;
+}
+@keyframes heroIn {
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .s1,
+  .s2,
+  .s3,
+  .s4,
+  .s5 {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+}
+
+/* ============================================================
+   Intestazioni di sezione
+   ============================================================ */
+.centerHead {
+  text-align: center;
+  max-width: 46ch;
+  margin: 0 auto var(--space-7);
+}
+.centerHead .eyebrow {
+  justify-content: center;
+}
+
+.sectionHead {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--space-5);
+  margin-bottom: var(--space-7);
+}
+.headLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  font-size: var(--fs-sm);
+  color: var(--color-primary);
+  white-space: nowrap;
+}
+.headLink svg {
+  transition: transform var(--t-fast) ease;
+}
+.headLink:hover svg {
+  transform: translateX(4px);
+}
+
+/* ============================================================
+   Esplora per tipologia
+   ============================================================ */
+.tipi {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-5);
+}
+.tipo {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-6);
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--t-base) var(--ease-out),
+    box-shadow var(--t-base) var(--ease-out), border-color var(--t-base) ease;
+}
+.tipo:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--color-gold);
+}
+.tipoIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: rgba(var(--rgb-primary), 0.07);
+  color: var(--color-primary);
+  margin-bottom: var(--space-2);
+}
+.tipoLabel {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--color-dark);
+}
+.tipoCount {
+  font-size: var(--fs-sm);
+  color: var(--color-mid);
+}
+.tipoArrow {
+  position: absolute;
+  top: var(--space-5);
+  right: var(--space-5);
+  color: var(--color-gold);
+  transition: transform var(--t-fast) ease;
+}
+.tipo:hover .tipoArrow {
+  transform: translateX(4px);
+}
+
+/* ============================================================
+   Bande con sfondo alternato
+   ============================================================ */
+.evidenzaBand,
+.serviziBand,
+.zoneBand {
+  background: var(--color-surface);
+  border-block: 1px solid var(--color-border);
+  padding-block: clamp(3.5rem, 8vw, 7rem);
+}
+
+/* ---- Griglia immobili in evidenza ---- */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-5);
+}
+
+/* ============================================================
+   Chi siamo + statistiche
+   ============================================================ */
+.chiInner {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: var(--space-8);
+  align-items: center;
+}
+.chiTitle {
+  font-size: var(--fs-h2);
+  margin-block: var(--space-4) var(--space-5);
+  max-width: 18ch;
+}
+.chiBody {
+  font-family: var(--font-serif);
+  font-size: var(--fs-lead);
+  line-height: 1.6;
+  color: var(--color-mid);
+  margin-bottom: var(--space-6);
+  max-width: 56ch;
+}
+
+.stats {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+.stats > div {
+  padding: var(--space-5) var(--space-6);
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-left: 3px solid var(--color-gold);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+}
+.statNum {
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 5vw, 3.2rem);
+  font-weight: 700;
+  color: var(--color-primary);
+  line-height: 1;
+}
+.statLabel {
+  margin-top: var(--space-2);
+  font-size: var(--fs-sm);
+  color: var(--color-mid);
+  letter-spacing: 0.02em;
+}
+
+/* ============================================================
+   I nostri servizi
+   ============================================================ */
+.servizi {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-5);
+}
+.servizio {
+  padding: var(--space-6);
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  transition: transform var(--t-base) var(--ease-out),
+    box-shadow var(--t-base) var(--ease-out);
+}
+.servizio:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-md);
+}
+.servizioIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 14px;
+  background: linear-gradient(150deg, var(--color-primary), var(--color-primary-dark));
+  color: var(--color-gold);
+  margin-bottom: var(--space-4);
+}
+.servizioTitle {
+  font-size: 1.25rem;
+  margin-bottom: var(--space-2);
+}
+.servizioText {
+  font-size: var(--fs-sm);
+  color: var(--color-mid);
+  line-height: 1.6;
+}
+
+/* ============================================================
+   Come lavoriamo (processo)
+   ============================================================ */
+.processo {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-5);
+}
+.step {
+  position: relative;
+  padding: var(--space-6) var(--space-5) var(--space-5);
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+.stepNum {
+  font-family: var(--font-display);
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 1;
+  color: rgba(var(--rgb-primary), 0.1);
+  position: absolute;
+  top: var(--space-3);
+  right: var(--space-4);
+}
+.stepIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(var(--rgb-gold), 0.15);
+  color: var(--color-primary);
+  margin-bottom: var(--space-4);
+}
+.stepTitle {
+  font-size: 1.15rem;
+  margin-bottom: var(--space-2);
+}
+.stepText {
+  font-size: var(--fs-sm);
+  color: var(--color-mid);
+  line-height: 1.55;
+}
+
+/* ============================================================
+   Le zone della Tuscia
+   ============================================================ */
+.zoneInner {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: var(--space-8);
+  align-items: center;
+}
+.zoneTitle {
+  font-size: var(--fs-h2);
+  margin-block: var(--space-4) var(--space-5);
+  max-width: 16ch;
+}
+.zoneBody {
+  font-family: var(--font-serif);
+  font-size: var(--fs-lead);
+  line-height: 1.6;
+  color: var(--color-mid);
+  max-width: 50ch;
+}
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0.7em 1.2em;
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-pill);
+  font-size: var(--fs-sm);
+  font-weight: 500;
+  color: var(--color-dark);
+  transition: all var(--t-fast) ease;
+}
+.chip svg {
+  color: var(--color-gold);
+}
+.chip:hover {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: #fff;
+  transform: translateY(-2px);
+}
+.chip:hover svg {
+  color: #fff;
+}
+
+/* ============================================================
+   Perché sceglierci
+   ============================================================ */
+.valori {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-5);
+}
+.valore {
+  padding: var(--space-6);
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  transition: transform var(--t-base) var(--ease-out),
+    box-shadow var(--t-base) var(--ease-out);
+}
+.valore:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-md);
+}
+.valoreIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: rgba(var(--rgb-primary), 0.07);
+  color: var(--color-primary);
+  margin-bottom: var(--space-4);
+}
+.valoreTitle {
+  font-size: 1.25rem;
+  margin-bottom: var(--space-2);
+}
+.valoreText {
+  font-size: var(--fs-sm);
+  color: var(--color-mid);
+  line-height: 1.6;
+}
+
+/* ============================================================
+   CTA finale
+   ============================================================ */
+.ctaFinal {
+  background: var(--color-primary);
+  color: var(--color-bg);
+}
+.ctaInner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-6);
+  padding-block: clamp(3rem, 6vw, 5rem);
+}
+.ctaEyebrow {
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.24em;
+  color: var(--color-gold);
+  margin-bottom: var(--space-3);
+}
+.ctaTitle {
+  color: #fff;
+  font-size: var(--fs-h2);
+  line-height: 1.15;
+}
+.ctaContacts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3) var(--space-6);
+  margin-top: var(--space-5);
+}
+.ctaContacts a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  color: #fff;
+  transition: color var(--t-fast) ease;
+}
+.ctaContacts svg {
+  color: var(--color-gold);
+}
+.ctaContacts a:hover {
+  color: var(--color-gold);
+}
+
+/* ============================================================
+   Responsive
+   ============================================================ */
+@media (max-width: 1024px) {
+  .tipi {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .servizi {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .processo {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .valori {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .chiInner,
+  .zoneInner {
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+}
+@media (max-width: 680px) {
+  .tipi,
+  .grid,
+  .servizi,
+  .valori {
+    grid-template-columns: 1fr;
+  }
+  .processo {
+    grid-template-columns: 1fr;
+  }
+  .sectionHead {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-3);
+  }
+  .ctaInner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

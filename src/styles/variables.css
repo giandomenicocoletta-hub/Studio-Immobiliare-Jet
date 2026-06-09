@@ -1,0 +1,85 @@
+/* ============================================================
+   STUDIO IMMOBILIARE JET — Design Tokens
+   Lusso sobrio italiano · materico · radicato nella Tuscia
+   ============================================================ */
+:root {
+  /* ---- Palette ---- */
+  --color-primary: #6b1a1a; /* bordeaux scuro */
+  --color-primary-dark: #511212;
+  --color-primary-soft: #8a3434;
+  --color-gold: #c9a84c; /* oro / champagne */
+  --color-gold-soft: #ddc78f;
+  --color-gold-light: #e6d6a3;
+  --color-bg: #faf8f5; /* bianco caldo */
+  --color-dark: #1e1e1e; /* quasi-nero */
+  --color-mid: #5a5a5a; /* grigio testo secondario */
+  --color-surface: #f0ede8; /* superficie card */
+  --color-border: #e2ddd6; /* bordi sottili */
+  --color-white: #ffffff;
+
+  /* RGB helpers (per rgba) */
+  --rgb-primary: 107, 26, 26;
+  --rgb-gold: 201, 168, 76;
+  --rgb-dark: 30, 30, 30;
+
+  /* ---- Tipografia ---- */
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-serif: 'Cormorant Garamond', Georgia, serif;
+  --font-sans: 'DM Sans', system-ui, -apple-system, sans-serif;
+
+  /* Scala tipografica fluida */
+  --fs-hero: clamp(2.6rem, 6vw, 5rem);
+  --fs-h1: clamp(2.2rem, 4.5vw, 3.6rem);
+  --fs-h2: clamp(1.8rem, 3.5vw, 2.8rem);
+  --fs-h3: clamp(1.3rem, 2.2vw, 1.7rem);
+  --fs-lead: clamp(1.1rem, 1.6vw, 1.35rem);
+  --fs-body: 1rem;
+  --fs-sm: 0.875rem;
+  --fs-xs: 0.75rem;
+
+  /* ---- Spaziatura (8pt) ---- */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4rem;
+  --space-9: 6rem;
+  --space-10: 8rem;
+
+  /* ---- Layout ---- */
+  --container: 1240px;
+  --container-narrow: 920px;
+  --nav-height: 84px;
+  --nav-height-scrolled: 68px;
+
+  /* ---- Raggi ---- */
+  --radius-sm: 4px;
+  --radius: 8px;
+  --radius-lg: 14px;
+  --radius-pill: 999px;
+
+  /* ---- Ombre ---- */
+  --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --shadow-md: 0 12px 28px rgba(0, 0, 0, 0.12);
+  --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.18);
+  --shadow-gold: 0 8px 24px rgba(var(--rgb-gold), 0.25);
+
+  /* ---- Easing & timing ---- */
+  --ease-luxe: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --t-fast: 0.2s;
+  --t-base: 0.35s;
+  --t-slow: 0.6s;
+
+  /* ---- Z-index scale ---- */
+  --z-base: 1;
+  --z-sticky: 100;
+  --z-nav: 200;
+  --z-drawer: 400;
+  --z-cursor: 500;
+  --z-lightbox: 800;
+  --z-loader: 1000;
+}

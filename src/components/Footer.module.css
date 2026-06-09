@@ -1,0 +1,135 @@
+.footer {
+  position: relative;
+  color: var(--color-bg);
+  background-color: var(--color-primary-dark);
+  background-image: url('/assets/properties/p9-0.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  isolation: isolate;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(
+    180deg,
+    rgba(81, 18, 18, 0.94) 0%,
+    rgba(40, 10, 10, 0.97) 100%
+  );
+}
+
+.inner {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr 1.4fr;
+  gap: var(--space-8);
+  padding-block: var(--space-9) var(--space-7);
+}
+
+.tagline {
+  margin-top: var(--space-4);
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  line-height: 1.5;
+  color: rgba(250, 248, 245, 0.82);
+  max-width: 42ch;
+}
+
+.fimaa {
+  margin-top: var(--space-4);
+  font-size: var(--fs-sm);
+  color: var(--color-gold);
+  letter-spacing: 0.03em;
+}
+
+.social {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: var(--space-5);
+  padding: 0.6em 1.1em;
+  border: 1px solid rgba(250, 248, 245, 0.3);
+  border-radius: var(--radius-pill);
+  font-size: var(--fs-sm);
+  font-weight: 500;
+  color: rgba(250, 248, 245, 0.9);
+  transition: background var(--t-fast) ease, border-color var(--t-fast) ease;
+}
+.social:hover {
+  background: rgba(250, 248, 245, 0.1);
+  border-color: var(--color-gold);
+  color: #fff;
+}
+
+.colTitle {
+  font-family: var(--font-sans);
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  color: var(--color-gold);
+  margin-bottom: var(--space-4);
+}
+
+.linksCol,
+.contactCol {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.link {
+  color: rgba(250, 248, 245, 0.82);
+  width: fit-content;
+  transition: color var(--t-fast) ease, transform var(--t-fast) ease;
+}
+.link:hover {
+  color: #fff;
+  transform: translateX(4px);
+}
+
+.contactItem {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  color: rgba(250, 248, 245, 0.82);
+  font-size: var(--fs-sm);
+  line-height: 1.5;
+  transition: color var(--t-fast) ease;
+}
+a.contactItem:hover {
+  color: #fff;
+}
+.contactItem svg {
+  flex-shrink: 0;
+  margin-top: 2px;
+  color: var(--color-gold);
+}
+
+.bottom {
+  border-top: 1px solid rgba(250, 248, 245, 0.14);
+  padding-block: var(--space-4);
+  font-size: var(--fs-xs);
+  color: rgba(250, 248, 245, 0.6);
+  text-align: center;
+}
+
+@media (max-width: 860px) {
+  .footer {
+    background-attachment: scroll;
+  }
+  .inner {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-6);
+  }
+  .brandCol {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 560px) {
+  .inner {
+    grid-template-columns: 1fr;
+  }
+}

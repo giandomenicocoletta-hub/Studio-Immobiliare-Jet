@@ -1,0 +1,57 @@
+.dot,
+.ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: var(--z-cursor);
+  pointer-events: none;
+  border-radius: 50%;
+  margin-left: -4px;
+  margin-top: -4px;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  background: var(--color-primary);
+  opacity: 0;
+  transition: transform 0.08s linear, opacity var(--t-fast) ease;
+}
+
+.ring {
+  width: 8px;
+  height: 8px;
+  border: 1px solid transparent;
+  background: transparent;
+  opacity: 0;
+  transition: width var(--t-base) var(--ease-out), opacity var(--t-fast) ease,
+    height var(--t-base) var(--ease-out),
+    border-color var(--t-base) ease, margin var(--t-base) var(--ease-out);
+}
+
+.grow {
+  width: 40px;
+  height: 40px;
+  margin-left: -20px;
+  margin-top: -20px;
+  border-color: var(--color-primary);
+  background: rgba(var(--rgb-primary), 0.04);
+}
+
+.hideNative,
+.hideNative * {
+  cursor: none !important;
+}
+
+@media (hover: none) {
+  .dot,
+  .ring {
+    display: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .dot,
+  .ring {
+    display: none;
+  }
+}

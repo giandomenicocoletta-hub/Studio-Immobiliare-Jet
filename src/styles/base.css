@@ -1,0 +1,278 @@
+/* ============================================================
+   STUDIO IMMOBILIARE JET — Reset & tipografia base
+   ============================================================ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  /* Evita il "rimbalzo" elastico (overscroll) del touchpad: senza questo,
+     scrollando oltre la cima la navbar fissa veniva trascinata in basso. */
+  overscroll-behavior-y: none;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-dark);
+  font-family: var(--font-sans);
+  font-size: var(--fs-body);
+  font-weight: 400;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-tap-highlight-color: transparent;
+  overflow-x: hidden;
+  overscroll-behavior-y: none;
+}
+
+img,
+picture,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+/* Riduce il ritardo di 300ms al tocco */
+a,
+button,
+input,
+select,
+textarea,
+[role='button'] {
+  touch-action: manipulation;
+}
+
+/* ---- Titoli ---- */
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  line-height: 1.12;
+  letter-spacing: -0.01em;
+  color: var(--color-dark);
+}
+
+p {
+  text-wrap: pretty;
+}
+
+/* ---- Focus accessibile ---- */
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+::selection {
+  background-color: var(--color-primary);
+  color: var(--color-bg);
+}
+
+/* ============================================================
+   Utility globali riutilizzate
+   ============================================================ */
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: var(--space-5);
+}
+
+.section {
+  padding-block: clamp(3.5rem, 8vw, 7rem);
+}
+
+/* Eyebrow / kicker */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-family: var(--font-sans);
+  text-transform: uppercase;
+  letter-spacing: 0.24em;
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  color: var(--color-primary);
+}
+.eyebrow::before {
+  content: '';
+  width: 28px;
+  height: 1px;
+  background: var(--color-gold);
+}
+
+/* Titolo di sezione con sottotitolo serif */
+.section-title {
+  font-size: var(--fs-h2);
+}
+.section-subtitle {
+  font-family: var(--font-serif);
+  font-size: var(--fs-lead);
+  font-weight: 500;
+  color: var(--color-mid);
+  max-width: 56ch;
+}
+
+/* Linea decorativa bordeaux */
+.rule-gold {
+  width: 56px;
+  height: 3px;
+  background: var(--color-primary);
+  border-radius: var(--radius-pill);
+}
+
+/* ---- Bottoni ---- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: var(--fs-sm);
+  letter-spacing: 0.02em;
+  padding: 0.95em 1.8em;
+  border-radius: var(--radius-pill);
+  transition: transform var(--t-fast) var(--ease-out),
+    background-color var(--t-base) var(--ease-out),
+    color var(--t-base) var(--ease-out), box-shadow var(--t-base) var(--ease-out);
+  will-change: transform;
+}
+.btn:active {
+  transform: scale(0.97);
+}
+
+.btn-primary {
+  background: var(--color-primary);
+  color: var(--color-bg);
+  box-shadow: var(--shadow-sm);
+}
+.btn-primary:hover {
+  background: var(--color-primary-dark);
+  box-shadow: var(--shadow-md);
+}
+
+.btn-gold {
+  background: var(--color-gold);
+  color: var(--color-dark);
+  box-shadow: var(--shadow-sm);
+}
+.btn-gold:hover {
+  background: var(--color-gold-soft);
+  box-shadow: var(--shadow-gold);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--color-white);
+  border: 1.5px solid rgba(255, 255, 255, 0.7);
+}
+.btn-outline:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: var(--color-white);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--color-primary);
+  border: 1.5px solid var(--color-border);
+}
+.btn-ghost:hover {
+  border-color: var(--color-primary);
+  background: rgba(var(--rgb-primary), 0.04);
+}
+
+/* ============================================================
+   Scroll reveal universale
+   ============================================================ */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity var(--t-slow) var(--ease-luxe),
+    transform var(--t-slow) var(--ease-luxe);
+  transition-delay: calc(var(--index, 0) * 80ms);
+}
+.reveal.revealed {
+  opacity: 1;
+  transform: none;
+}
+
+/* Nasconde la scrollbar per i caroselli */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* ============================================================
+   Riduzione del movimento (accessibilità)
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Cursore custom: nascosto su touch / mobile */
+@media (hover: none) {
+  .cursor-dot,
+  .cursor-ring {
+    display: none !important;
+  }
+}
+
+/* Anti-zoom iOS sui campi */
+@media (max-width: 640px) {
+  input,
+  select,
+  textarea {
+    font-size: 16px;
+  }
+}
