@@ -1,8 +1,8 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useNavigate, useSearchParams } from 'react-router-dom'
 import { TIPOLOGIE, TIPOLOGIA_LABEL, COMUNI } from '../data/immobili.js'
 import { formatNumero } from '../lib/format.js'
-import { IconSearch, IconSliders } from './Icons.jsx'
+import { IconSearch, IconSliders, IconChevronDown, IconClose } from './Icons.jsx'
 import styles from './SearchBar.module.css'
 
 const PREZZO_BUCKETS = [
@@ -38,6 +38,16 @@ export default function SearchBar({ variant = 'compact', onSearch }) {
   const navigate = useNavigate()
   const [searchParams, setSearchParams] = useSearchParams()
   const [mobileOpen, setMobileOpen] = useState(false)
+  const [compactOpen, setCompactOpen] = useState(false)
+
+  // Blocca lo scroll del body quando il drawer filtri (mobile) è aperto.
+  useEffect(() => {
+    if (variant !== 'full') return
+    document.body.style.overflow = mobileOpen ? 'hidden' : ''
+    return () => {
+      document.body.style.overflow = ''
+    }
+  }, [mobileOpen, variant])
 
   const [f, setF] = useState({
     tipologia: searchParams.get('tipo') || '',
@@ -95,7 +105,28 @@ export default function SearchBar({ variant = 'compact', onSearch }) {
   /* ---------- COMPACT (hero) ---------- */
   if (variant === 'compact') {
     return (
-      <form className={styles.compact} onSubmit={submit} role="search">
+      <form
+        className={`${styles.compact} ${compactOpen ? styles.compactOpen : ''}`}
+        onSubmit={submit}
+        role="search"
+      >
+        {/* Accordion trigger (solo mobile) */}
+        <button
+          type="button"
+          className={styles.compactTrigger}
+          onClick={() => setCompactOpen((v) => !v)}
+          aria-expanded={compactOpen}
+        >
+          <span>
+            <IconSearch width={18} height={18} /> Cerca immobile
+          </span>
+          <IconChevronDown
+            width={20}
+            height={20}
+            className={styles.triggerChevron}
+          />
+        </button>
+
         <div className={styles.compactField}>
           <label>Tipologia</label>
           <select value={f.tipologia} onChange={update('tipologia')}>
@@ -172,11 +203,26 @@ export default function SearchBar({ variant = 'compact', onSearch }) {
         Filtri
       </button>
 
+      {/* Backdrop del drawer filtri (solo mobile) */}
+      <div
+        className={`${styles.sheetBackdrop} ${mobileOpen ? styles.sheetBackdropOpen : ''}`}
+        onClick={() => setMobileOpen(false)}
+        aria-hidden="true"
+      />
+
       <div className={`${styles.panel} ${mobileOpen ? styles.panelOpen : ''}`}>
         <div className={styles.panelHead}>
           <h2 className={styles.panelTitle}>Filtra</h2>
           <button type="button" className={styles.reset} onClick={reset}>
             Azzera filtri
+          </button>
+          <button
+            type="button"
+            className={styles.sheetClose}
+            onClick={() => setMobileOpen(false)}
+            aria-label="Chiudi i filtri"
+          >
+            <IconClose width={22} height={22} />
           </button>
         </div>
 
@@ -287,6 +333,15 @@ export default function SearchBar({ variant = 'compact', onSearch }) {
             ))}
           </div>
         </div>
+
+        {/* Conferma (solo mobile, chiude il drawer) */}
+        <button
+          type="button"
+          className={styles.applyBtn}
+          onClick={() => setMobileOpen(false)}
+        >
+          Vedi gli immobili
+        </button>
       </div>
     </div>
   )

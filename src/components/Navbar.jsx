@@ -69,6 +69,14 @@ export default function Navbar() {
           {AGENZIA.telefono}
         </a>
 
+        {/* Mobile: chiamata rapida (icona) + hamburger */}
+        <a
+          href={AGENZIA.telefonoHref}
+          className={styles.callMobile}
+          aria-label={`Chiama ${AGENZIA.telefono}`}
+        >
+          <IconPhone width={20} height={20} />
+        </a>
         <button
           className={styles.burger}
           onClick={() => setOpen(true)}

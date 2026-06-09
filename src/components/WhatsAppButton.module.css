@@ -1,7 +1,7 @@
 .fab {
   position: fixed;
-  right: clamp(16px, 3vw, 28px);
-  bottom: clamp(16px, 3vw, 28px);
+  right: max(clamp(16px, 3vw, 28px), env(safe-area-inset-right));
+  bottom: max(clamp(16px, 3vw, 28px), env(safe-area-inset-bottom));
   z-index: var(--z-sticky);
   display: inline-flex;
   align-items: center;

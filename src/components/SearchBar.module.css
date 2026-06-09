@@ -64,6 +64,30 @@
   box-shadow: var(--shadow-lg);
 }
 
+/* Accordion trigger (solo mobile) */
+.compactTrigger {
+  display: none;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0.85em 1em;
+  min-height: 48px;
+  font-weight: 600;
+  font-size: var(--fs-body);
+  color: var(--color-primary);
+}
+.compactTrigger > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.triggerChevron {
+  transition: transform var(--t-base) var(--ease-out);
+}
+.compactOpen .triggerChevron {
+  transform: rotate(180deg);
+}
+
 .compactField {
   display: flex;
   flex-direction: column;
@@ -113,9 +137,29 @@
     grid-column: 1 / -1;
   }
 }
-@media (max-width: 540px) {
+/* Accordion su mobile: il box mostra solo il trigger finché non si apre */
+@media (max-width: 640px) {
   .compact {
     grid-template-columns: 1fr;
+    gap: var(--space-4);
+    padding: var(--space-3);
+  }
+  .compactTrigger {
+    display: flex;
+  }
+  .compact:not(.compactOpen) {
+    gap: 0;
+  }
+  .compact:not(.compactOpen) .compactField,
+  .compact:not(.compactOpen) .searchBtn {
+    display: none;
+  }
+  .compact select,
+  .toggle button {
+    min-height: 48px;
+  }
+  .searchBtn {
+    min-height: 50px;
   }
 }
 
@@ -155,12 +199,13 @@
 .panelHead {
   display: flex;
   align-items: baseline;
-  justify-content: space-between;
+  gap: var(--space-3);
   padding-bottom: var(--space-4);
   border-bottom: 1px solid var(--color-border);
 }
 .panelTitle {
   font-size: 1.3rem;
+  margin-right: auto;
 }
 .reset {
   font-size: var(--fs-xs);
@@ -253,15 +298,104 @@
   border-color: var(--color-primary);
 }
 
+/* Elementi del bottom-sheet: nascosti su desktop */
+.sheetBackdrop,
+.sheetClose,
+.applyBtn {
+  display: none;
+}
+
+/* ============================================================
+   FULL su mobile → bottom-sheet (drawer dal basso)
+   ============================================================ */
 @media (max-width: 1024px) {
   .mobileToggle {
     display: flex;
+    min-height: 48px;
   }
+
+  .sheetBackdrop {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(30, 30, 30, 0.5);
+    backdrop-filter: blur(2px);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity var(--t-base) ease;
+    z-index: var(--z-drawer);
+  }
+  .sheetBackdropOpen {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
   .panel {
-    display: none;
-    position: static;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: auto;
+    width: 100%;
+    max-height: 86dvh;
+    overflow-y: auto;
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+    transform: translateY(100%);
+    transition: transform var(--t-base) var(--ease-luxe);
+    z-index: var(--z-drawer);
+    padding-bottom: max(var(--space-5), env(safe-area-inset-bottom));
+    box-shadow: 0 -24px 60px rgba(0, 0, 0, 0.22);
   }
   .panelOpen {
-    display: flex;
+    transform: translateY(0);
+  }
+  /* Maniglia del drawer */
+  .panel::before {
+    content: '';
+    position: sticky;
+    top: 0;
+    display: block;
+    width: 44px;
+    height: 4px;
+    margin: 0 auto var(--space-2);
+    border-radius: var(--radius-pill);
+    background: var(--color-border);
+  }
+
+  .panelHead {
+    align-items: center;
+  }
+  .sheetClose {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    color: var(--color-dark);
+    background: var(--color-surface);
+    margin-left: var(--space-3);
+  }
+
+  .applyBtn {
+    display: block;
+    width: 100%;
+    min-height: 50px;
+    margin-top: var(--space-2);
+    background: var(--color-primary);
+    color: var(--color-bg);
+    font-weight: 600;
+    font-size: var(--fs-body);
+    border-radius: var(--radius-pill);
+    box-shadow: var(--shadow-sm);
+    position: sticky;
+    bottom: 0;
+  }
+
+  /* Tap target più generosi nel drawer */
+  .full select,
+  .toggle button,
+  .localiBtn {
+    min-height: 48px;
   }
 }

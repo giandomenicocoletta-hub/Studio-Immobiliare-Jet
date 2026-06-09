@@ -97,10 +97,32 @@
   flex-shrink: 0;
 }
 
+/* Mobile: pulsante chiamata compatto (icona) */
+.callMobile {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  color: var(--color-primary);
+  background: rgba(var(--rgb-primary), 0.09);
+  transition: background var(--t-fast) ease;
+}
+.overHero .callMobile {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.18);
+}
+
 .burger {
   display: none;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
   color: var(--color-dark);
-  padding: 4px;
 }
 
 /* ---- Drawer mobile ---- */
@@ -128,6 +150,7 @@
   background: var(--color-bg);
   z-index: var(--z-drawer);
   padding: var(--space-5);
+  padding-bottom: max(var(--space-5), env(safe-area-inset-bottom));
   display: flex;
   flex-direction: column;
   gap: var(--space-5);
@@ -175,10 +198,15 @@
 
 @media (max-width: 900px) {
   .links,
-  .cta {
+  a.cta {
     display: none;
   }
-  .burger {
+  .burger,
+  .callMobile {
     display: inline-flex;
+  }
+  .inner {
+    gap: var(--space-3);
+    padding-inline: var(--space-4);
   }
 }

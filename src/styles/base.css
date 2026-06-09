@@ -276,3 +276,25 @@ p {
     font-size: 16px;
   }
 }
+
+/* ============================================================
+   Touch target minimi su dispositivi touch (WCAG / Apple HIG: 44px+)
+   ============================================================ */
+@media (pointer: coarse) {
+  .btn {
+    min-height: 48px;
+  }
+  select,
+  textarea,
+  input:not([type='range']):not([type='checkbox']) {
+    min-height: 46px;
+  }
+}
+
+/* Safe-area: i .container non vanno sotto notch/bordi in landscape */
+@supports (padding: max(0px)) {
+  .container {
+    padding-left: max(var(--space-5), env(safe-area-inset-left));
+    padding-right: max(var(--space-5), env(safe-area-inset-right));
+  }
+}
